@@ -1,12 +1,4 @@
 println("UW Complex Kotlin homework")
- /*EXTRA CREDIT
- Seneca the Younger aka Lucius Annaeus Seneca was a Roman Stoic philosopher. The school of 
- philosophy he is commonly associated with is Stoicism which is a school of Hellenistic philosophy
- 
- 
-  */
-
-
 
 // write a lambda using map and fold to solve "FIZZBUZZ" for the first fifteen numbers (0..15)
 // use map to return a list with "", "FIZZ" or "BUZZ" as necessary
