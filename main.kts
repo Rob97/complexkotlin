@@ -1,11 +1,37 @@
 println("UW Complex Kotlin homework")
+ /*EXTRA CREDIT
+ Seneca the Younger aka Lucius Annaeus Seneca was a Roman Stoic philosopher. The school of 
+ philosophy he is commonly associated with is Stoicism which is a school of Hellenistic philosophy
+ 
+ 
+  */
+
+
 
 // write a lambda using map and fold to solve "FIZZBUZZ" for the first fifteen numbers (0..15)
 // use map to return a list with "", "FIZZ" or "BUZZ" as necessary
 // use fold to compress the array of strings down into a single string
 // the final string should look like FIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZ
 //
-val mapFoldResults = ""
+val mapFoldResults = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ,14, 15).map {
+    FOrB(it)
+}.fold("", {x, y -> x + y})
+
+if(mapFoldResults != "FIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZ"){
+println(mapFoldResults)}
+
+
+fun FOrB(n: Int): String {    
+   if(n % 3 == 0 &&  n % 5 == 0){
+       return "FIZZBUZZ"
+   }else if(n % 3 == 0){
+       return "FIZZ"
+   }else if(n % 5 == 0){
+       return "BUZZ"
+   }else {
+       return ""
+   }
+}
 
 
 // This is a utility function for your use as you choose, and as an
@@ -20,21 +46,40 @@ fun Int.times(block: () -> Unit): Unit {
 fun process(message: String, block: (String) -> String): String {
     return ">>> ${message}: {" + block(message) + "}"
 }
-val r1 = "" // call process() with message "FOO" and a block that returns "BAR"
+val r1 = process("FOO",{"BAR"})// call process() with message "FOO" and a block that returns "BAR"
 
 val r2_message = "wooga"
-val r2 = "" // call process() with message "FOO" and a block that upper-cases 
+val r2 = process("FOO", { r2_message.toUpperCase().repeat(3) })// call process() with message "FOO" and a block that upper-cases 
             // r2_message, and repeats it three times with no spaces: "WOOGAWOOGAWOOGA"
 
 
 // write an enum-based state machine between talking and thinking
-enum class Philosopher { }
+enum class Philosopher {
+    THINKING {
+        override fun signal() = TALKING
+        override fun toString(): String {
+            return "Deep thoughts...."
+        }
+    },
+
+    TALKING {
+        override fun signal() = THINKING
+        override fun toString(): String {
+            return "Allow me to suggest an idea..."
+        }
+    };
+
+    abstract fun signal(): Philosopher
+ }
 
 // create an class "Command" that can be used as a function (provide an "invoke()" function)
 // that takes a single parameter ("message" of type String)
 // primary constructor should take a String argument ("prompt")
 // when called, the Command object should return a String containing the prompt and then the message
 class Command(val prompt: String) {
+    operator fun invoke(message: String):String{
+        return prompt + message
+    }
 }
 
 
